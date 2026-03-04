@@ -37,7 +37,7 @@ def optimize_dtypes(df: pd.DataFrame) -> pd.DataFrame:
     for col in optimized.select_dtypes(include=["object"]).columns:
         num_unique = optimized[col].nunique()
         num_total = len(optimized[col])
-        if num_unique / num_total < 0.5:
+        if num_total > 0 and num_unique / num_total < 0.5:
             optimized[col] = optimized[col].astype("category")
     
     return optimized
