@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 def optimize_dtypes(df: pd.DataFrame) -> pd.DataFrame:
     """Optimize dataframe memory by downcasting dtypes."""
-    optimized = df.copy()
+    optimized = df
     
     for col in optimized.select_dtypes(include=["int64"]).columns:
         col_min = optimized[col].min()
