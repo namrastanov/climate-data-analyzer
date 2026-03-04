@@ -17,11 +17,11 @@ def optimize_dtypes(df: pd.DataFrame) -> pd.DataFrame:
         col_max = optimized[col].max()
         
         if col_min >= 0:
-            if col_max < 255:
+            if col_max <= 255:
                 optimized[col] = optimized[col].astype(np.uint8)
-            elif col_max < 65535:
+            elif col_max <= 65535:
                 optimized[col] = optimized[col].astype(np.uint16)
-            elif col_max < 4294967295:
+            elif col_max <= 4294967295:
                 optimized[col] = optimized[col].astype(np.uint32)
         else:
             if col_min > -128 and col_max < 127:
