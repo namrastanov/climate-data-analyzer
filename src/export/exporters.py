@@ -39,7 +39,8 @@ class CSVExporter(BaseExporter):
         **kwargs
     ) -> Path:
         """Export to CSV."""
-        output_path = self.output_dir / f"{filename}.csv"
+        safe_filename = Path(filename).name  # Strip any directory components
+        output_path = self.output_dir / f"{safe_filename}.csv"
         data.to_csv(output_path, sep=delimiter, index=False, **kwargs)
         logger.info(f"Exported {len(data)} rows to {output_path}")
         return output_path
