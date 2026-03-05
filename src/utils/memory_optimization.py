@@ -58,8 +58,9 @@ def read_chunked(
 
 def get_memory_usage(df: pd.DataFrame) -> Dict[str, float]:
     """Get detailed memory usage statistics."""
-    total = df.memory_usage(deep=True).sum()
-    by_column = df.memory_usage(deep=True).to_dict()
+    mem = df.memory_usage(deep=True)
+    total = mem.sum()
+    by_column = mem.to_dict()
     
     return {
         "total_mb": total / (1024 * 1024),
