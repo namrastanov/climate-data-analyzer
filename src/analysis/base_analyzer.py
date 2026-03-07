@@ -1,7 +1,7 @@
 """Base class for analysis modules."""
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional
+from typing import Any, Callable, Dict, Optional
 import pandas as pd
 import logging
 
