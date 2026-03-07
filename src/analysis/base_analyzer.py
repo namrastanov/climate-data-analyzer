@@ -53,23 +53,28 @@ class AnalyzerRegistry:
     _analyzers: Dict[str, type] = {}
 
     def __init_subclass__(cls, **kwargs):
-    def register(cls, name: str) -> callable:
+        super().__init_subclass__(**kwargs)
         cls._analyzers = {}
 
     @classmethod
-    def register(cls, name: str):
+    def register(cls, name: str) -> Callable[[type], type]:
         """Decorator to register analyzer."""
-        def wrapper(analyzer_cls):
+        def wrapper(analyzer_cls: type) -> type:
             cls._analyzers[name] = analyzer_cls
-    def get(cls, name: str) -> type[BaseAnalyzer]:
+            return analyzer_cls
         return wrapper
 
     @classmethod
     def get(cls, name: str) -> type:
         """Get analyzer class by name."""
         if name not in cls._analyzers:
-    def list_analyzers(cls) -> list[str]:
+            raise KeyError(f"Unknown analyzer: {name}")
         return cls._analyzers[name]
+
+    @classmethod
+    def list_analyzers(cls) -> list[str]:
+        """List registered analyzers."""
+        return list(cls._analyzers.keys())
 
     @classmethod
     def list_analyzers(cls) -> list:
