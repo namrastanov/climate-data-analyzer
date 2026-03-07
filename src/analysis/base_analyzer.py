@@ -68,7 +68,7 @@ class AnalyzerRegistry:
     def get(cls, name: str) -> type:
         """Get analyzer class by name."""
         if name not in cls._analyzers:
-            raise KeyError(f"Unknown analyzer: {name}")
+    def list_analyzers(cls) -> list[str]:
         return cls._analyzers[name]
 
     @classmethod
