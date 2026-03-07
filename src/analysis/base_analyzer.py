@@ -52,6 +52,10 @@ class AnalyzerRegistry:
 
     _analyzers: Dict[str, type] = {}
 
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        cls._analyzers = {}
+
     @classmethod
     def register(cls, name: str):
         """Decorator to register analyzer."""
