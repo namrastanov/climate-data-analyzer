@@ -61,7 +61,7 @@ class AnalyzerRegistry:
         """Decorator to register analyzer."""
         def wrapper(analyzer_cls):
             cls._analyzers[name] = analyzer_cls
-            return analyzer_cls
+    def get(cls, name: str) -> type[BaseAnalyzer]:
         return wrapper
 
     @classmethod
