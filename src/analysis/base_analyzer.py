@@ -53,7 +53,7 @@ class AnalyzerRegistry:
     _analyzers: Dict[str, type] = {}
 
     def __init_subclass__(cls, **kwargs):
-        super().__init_subclass__(**kwargs)
+    def register(cls, name: str) -> callable:
         cls._analyzers = {}
 
     @classmethod
