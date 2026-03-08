@@ -59,7 +59,6 @@ class AnalyzerRegistry:
 
     @classmethod
     def register(cls, name: str) -> Callable[[type], type]:
-    def register(cls, name: str) -> Callable[[type], type]:
         """Decorator to register analyzer."""
         def wrapper(analyzer_cls: type) -> type:
             if not issubclass(analyzer_cls, BaseAnalyzer):
