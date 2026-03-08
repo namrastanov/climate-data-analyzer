@@ -41,10 +41,20 @@ class BaseAnalyzer(ABC):
         return self._results
 
     def to_dataframe(self) -> pd.DataFrame:
-        """Convert results to DataFrame."""
+        """Convert results to DataFrame.
+        
+        Expects _results to be a flat dict with scalar or simple list values.
+        Nested dicts or non-serializable objects may cause errors.
+        """
         if self._results is None:
             raise ValueError("No results available")
-        return pd.DataFrame([self._results])
+        try:
+            return pd.DataFrame([self._results])
+        except (ValueError, TypeError) as e:
+            raise ValueError(
+                f"Cannot convert results to DataFrame: {e}. "
+                f"Ensure analyze() returns a flat dict with scalar values."
+            ) from e
 
 
 class AnalyzerRegistry:
