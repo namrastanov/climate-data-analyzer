@@ -4,7 +4,6 @@ from abc import ABC, abstractmethod
 from typing import Any, Callable, Dict, Optional
 import logging
 import pandas as pd
-import logging
 
 logger = logging.getLogger(__name__)
 
