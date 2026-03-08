@@ -75,8 +75,3 @@ class AnalyzerRegistry:
     def list_analyzers(cls) -> list[str]:
         """List registered analyzers."""
         return list(cls._analyzers.keys())
-
-    @classmethod
-    def list_analyzers(cls) -> list:
-        """List registered analyzers."""
-        return list(cls._analyzers.keys())
